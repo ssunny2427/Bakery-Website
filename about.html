@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slider #swiper.js</title>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css'>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap");
+
+    html,
+    body {
+      position: relative;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url("https://www.karachibakery.com/images/bg-patterrn.png");
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: black; /* Change text color to white */
+      overflow-x: hidden;
+    }
+
+    .swiper {
+      max-width: 50%;
+      overflow: visible;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 300px;
+      position: relative;
+    }
+
+    .swiper-slide::after {
+      position: absolute;
+      content: "";
+      inset: 0;
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: linear-gradient(to bottom right, #e6edf78f, #ffffff5e);
+      z-index: -1;
+    }
+
+    .swiper-slide-active::after {
+      background: none;
+    }
+
+    .swiper-slide>div {
+      text-align: center;
+      display: none;
+      opacity: 0;
+    }
+
+    .swiper-slide-active div {
+      display: block;
+      opacity: 1;
+    }
+
+    .swiper-slide h2 {
+      font-size: 1.2rem;
+      font-family: "Libre Baskerville", serif;
+      position: relative;
+      z-index: 1;
+    }
+
+    .swiper-slide h2::after {
+      position: absolute;
+      content: "";
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      background: linear-gradient(#e14343, #535dc5);
+    }
+
+    @keyframes line {
+      0% {
+        width: 0;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    .swiper-slide-active h2::after {
+      animation: line 0.5s linear forwards;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      box-shadow: 0px 3px 17px rgba(255, 0, 0, 0.25);
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+
+    }
+
+    @media (min-width: 768px) {
+      .swiper-slide h2 {
+        color: #ffffff;
+        font-size: 2rem;
+      }
+    }
+
+    * {
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      font-size: xx-large;
+      justify-content: space-between;
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: #ffffff; /* Change text color to white */
+      background: black;
+      position: fixed; /* Fix the navbar at the top */
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-nav {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .navbar-nav a {
+      text-decoration: none;
+      color: #ffffff;
+    }
+    /* Existing styles */
+
+/* Add this media query for smaller screens (e.g., phones) */
+@media (max-width: 767px) {
+  .swiper {
+    max-width: 100%;
+  }
+
+  .swiper-slide {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* Add other styles for smaller screens as needed */
+}
+
+
+    h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 4rem;
+        background-color: #28282B;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadein1 2s ease-in-out forwards;
+    }
+    @keyframes fadein1 {
+    0%{
+      opacity: 0;
+      transform: translate(-60px )scale(0.3);
+    }
+    }
+    .para{
+      margin-top: 30rem;
+      font-size: xx-large;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: black;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+     
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/index">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/menu">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/catering">Order</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">Payment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/suggestion">suggestion&&review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<br>
+<br>
+    <h1>Our products</h1>
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="https://media.istockphoto.com/id/949903834/photo/indian-paneer-pizza-with-fresh-cottage-cheese-cubes-and-white-sauce.jpg?s=612x612&w=0&k=20&c=sb7osYrq3j8BItngXupV9isq_jljGxtwnxshUWIyo_Y=" alt="paneer pizza" />
+        <div>
+          <h2> Pizza</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://kirbiecravings.com/wp-content/uploads/2020/05/lava-cake.jpg" alt="lava cake" />
+        <div>
+          <h2>Lava cake</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cdn.pixabay.com/photo/2021/09/08/17/15/donuts-6607442_640.jpg" alt="Donuts" />
+        <div>
+          <h2>Donuts</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=449&q=80" alt="Toast bread with blueberry" />
+        <div>
+          <h2>Toast bread with blueberry</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://theobroma.in/cdn/shop/products/assorted-pastries-egg-Dot-Images.jpg?v=1655445507" alt=" cakes" />
+        <div>
+          <h2>Pastries</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://guides.brit.co/media-library/image.jpg?id=24873863&width=980" alt="brownie" />
+        <div>
+          <h2>Chef special brownie with ice-cream</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://natashaskitchen.com/wp-content/uploads/2021/06/Air-Fryer-Fries-6.jpg" alt="french fries" />
+        <div>
+          <h2>French fries</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://www.thecookingcollective.com.au/wp-content/uploads/2022/08/Vegetable-Spring-Rolls-2-1.jpg" alt="rolls" />
+        <div>
+          <h2>Rolls</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://www.foodandwine.com/thmb/xpV_7tJxFnKM5TrzV_rqIWpuix4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chocolate-cupcakes-FT-RECIPE1221-e7e99dee29ad4a9db7a169d7c41f4f79.jpg" alt="cupcakes" />
+        <div>
+          <h2>Cupcakes</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="data:image/jpeg;base64,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" alt="nuggets" />
+        <div>
+          <h2>Nuggets</h2>
+        </div>
+      </div>
+      
+      <div class="swiper-slide">
+        <img src="https://www.dessertfortwo.com/wp-content/uploads/2022/08/How-to-Make-a-Milkshake-10.jpg" alt="nuggets" />
+        <div>
+          <h2>Milkshakes</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://www.thespruceeats.com/thmb/FhHcgQni8lgV0griUeDJMTAszxI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chocolate_hero1-d62e5444a8734f8d8fe91f5631d51ca5.jpg" alt="Choclates" />
+        <div>
+          <h2>Chocolates</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cdn.zeebiz.com/sites/default/files/2018/02/23/30149-coca-cola-beverages-reuters.jpg" alt="nuggets" />
+        <div>
+          <h2>Beverages</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://img.freepik.com/free-photo/fresh-cocktails-with-ice-lemon-lime-fruits-generative-ai_188544-12370.jpg?size=626&ext=jpg&ga=GA1.1.87170709.1707436800&semt=sph" alt="nuggets" />
+        <div>
+          <h2>Mocktails</h2>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80" alt=" burger" />
+        <div>
+          <h2>Veg burger</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div >
+    <p class="para">Once you taste it, you'll fall in love with it. </p>
+  </div>
+  <br>
+  <br>
+  <script src='https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js'></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      loop: true,
+      slidesPerView: "1",
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 4,
+        slideShadows: false
+      },
+      keyboard: {
+        enabled: true
+      },
+      mousewheel: {
+        thresholdDelta: 70
+      },
+      initialSlide: 0,
+      on: {
+        click(event) {
+          swiper.slideTo(this.clickedIndex);
+        }
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2
+        }
+      }
+    });
+  </script>
+</body>
+</html>

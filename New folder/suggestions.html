@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggestions</title>
+    <style>
+        .bgr-img {
+          background-image: url("https://www.karachibakery.com/images/bg-patterrn.png");
+        }
+        .head {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+        }
+        .textt {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 33rem;
+        }
+        .btnn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 33rem;
+            font-size: 2rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-top: 2rem;
+        }
+        .btnn:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body class="bgr-img"> 
+    <h1 class="head">Any Suggestions & Reviews</h1>
+    <hr>
+    <form action="/suggestion" method="post">
+        <label for="useData" class="textt">Add Comments:</label>
+        <textarea id="useData" name="useData" rows="6" cols="50" class="area"></textarea>
+        <button type="submit" class="btnn">Submit</button>
+    </form>
+</body>
+</html>
